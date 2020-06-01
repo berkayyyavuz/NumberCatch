@@ -6,13 +6,10 @@ public class NumberControl : MonoBehaviour
 {
     private int id;
     public int myID;
-    public GameObject gameManager;
-
-
+  
     private void Awake()
     {
-        id = myID;
-        gameManager = GameObject.FindGameObjectWithTag("GameManager");
+        id = myID;     
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -20,28 +17,25 @@ public class NumberControl : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
 
-            if (GameManager.list.Contains(myID))
+            if (GameManager.Instance.list.Contains(myID))
             {
-                GameManager.numOfCollect++;
-                Debug.Log(GameManager.numOfCollect + " collector");
+               
                 gameObject.SetActive(false);
 
             }
             else
             {
                 gameObject.SetActive(false);
-                GameManager.health -= 15;
-                Debug.Log("-15");
+                GameManager.Instance.health -= 15;            
             }
         }
 
         if (other.gameObject.tag == "Ground")
         {
-            if (GameManager.list.Contains(myID))
+            if (GameManager.Instance.list.Contains(myID))
             {
                 gameObject.SetActive(false);
-                GameManager.health -= 10;
-                Debug.Log("-10");
+                GameManager.Instance.health -= 10;              
             }
 
         }
